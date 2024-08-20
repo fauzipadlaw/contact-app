@@ -1,0 +1,7 @@
+{
+    "editor.fontWeight": "normal",
+    "[dart]": {
+    "editor.defaultFormatter": "Dart-Code.dart-code",
+    "editor.formatOnSave": true,
+}
+}
