@@ -9,7 +9,7 @@ abstract interface class ContactRepository {
     String? dob,
   });
 
-  Future<List<Contact>> getAllContacts();
+  Future<List<Contact>> getAllContacts(String query);
 
   Future<void> deleteContact(String id);
 

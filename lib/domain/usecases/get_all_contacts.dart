@@ -6,7 +6,7 @@ class GetAllContacts {
   final ContactRepository contactRepository;
   GetAllContacts(this.contactRepository);
 
-  Future<List<Contact>> call() async {
-    return await contactRepository.getAllContacts();
+  Future<List<Contact>> call(String query) async {
+    return await contactRepository.getAllContacts(query);
   }
 }

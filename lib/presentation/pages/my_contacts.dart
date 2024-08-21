@@ -4,12 +4,15 @@ import 'package:contact_app/presentation/widgets/groupped_list.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../widgets/contact_row.dart';
+
 class MyContacts extends ConsumerWidget {
   const MyContacts({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    ref.watch(contactListNotifierProvider.notifier).loadContacts();
+    String query = ref.watch(querySearchProvider);
+    ref.watch(contactListNotifierProvider.notifier).loadContacts(query);
     var list = ref.watch(contactListNotifierProvider);
     return Scaffold(
       appBar: PreferredSize(
@@ -35,6 +38,7 @@ class MyContacts extends ConsumerWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             TextField(
+              onChanged: ref.read(querySearchProvider.notifier).onChanged,
               decoration: InputDecoration(
                 hintText: 'Search your contact list...',
                 hintStyle: const TextStyle(color: gray),
@@ -53,9 +57,19 @@ class MyContacts extends ConsumerWidget {
             ),
             Expanded(
               child: SingleChildScrollView(
-                child: GrouppedList(
-                  contacts: list,
-                ),
+                child: query != ''
+                    ? Padding(
+                        padding: const EdgeInsets.only(top: 16),
+                        child: Column(
+                          children: List.generate(
+                            list.length,
+                            (index) => ContactRow(contact: list[index]),
+                          ),
+                        ),
+                      )
+                    : GrouppedList(
+                        contacts: list,
+                      ),
               ),
             )
           ],

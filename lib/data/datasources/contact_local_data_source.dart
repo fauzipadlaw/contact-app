@@ -9,7 +9,7 @@ class ContactLocalDataSource {
 
   ContactLocalDataSource(this.contactBox);
 
-  Future<List<ContactModel>> loadContacts() async {
+  Future<List<ContactModel>> loadContacts(String query) async {
     List<ContactModel> list = contactBox.values.toList();
     if (list.isEmpty) {
       final String response =
@@ -19,7 +19,16 @@ class ContactLocalDataSource {
           List<ContactModel>.from(data.map((d) => ContactModel.fromJson(d)));
       contactBox.addAll(listData);
     }
-    list = contactBox.values.toList();
+    list = query != ''
+        ? contactBox.values
+            .toList()
+            .where(
+              (v) => '${v.firstName} ${v.firstName}'.toLowerCase().startsWith(
+                    query.toLowerCase(),
+                  ),
+            )
+            .toList()
+        : contactBox.values.toList();
     return list;
   }
 }

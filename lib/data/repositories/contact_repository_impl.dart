@@ -25,8 +25,8 @@ class ContactRepositoryImpl implements ContactRepository {
   }
 
   @override
-  Future<List<Contact>> getAllContacts() async {
-    final blogs = await contactLocalDataSource.loadContacts();
+  Future<List<Contact>> getAllContacts(String query) async {
+    final blogs = await contactLocalDataSource.loadContacts(query);
     List<Contact> res = blogs.map((model) => model.toEntity()).toList();
     return res;
   }

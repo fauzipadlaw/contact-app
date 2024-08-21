@@ -36,7 +36,17 @@ class ContactListNotifier extends StateNotifier<List<Contact>> {
     this._getAllContacts,
   ) : super([]);
 
-  Future<void> loadContacts() async {
-    state = await _getAllContacts();
+  Future<void> loadContacts(String query) async {
+    state = await _getAllContacts(query);
   }
+}
+
+final querySearchProvider =
+    StateNotifierProvider<QuerySearchNotifier, String>((ref) {
+  return QuerySearchNotifier();
+});
+
+class QuerySearchNotifier extends StateNotifier<String> {
+  QuerySearchNotifier() : super('');
+  void onChanged(String query) => state = query;
 }
