@@ -1,7 +1,6 @@
 import 'package:contact_app/core/theme/colors.dart';
 import 'package:contact_app/data/models/contact_model.dart';
 import 'package:contact_app/presentation/pages/home.dart';
-import 'package:contact_app/presentation/pages/login.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';

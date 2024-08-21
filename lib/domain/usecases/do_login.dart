@@ -1,4 +1,3 @@
-import 'package:contact_app/domain/entities/contact.dart';
 import 'package:contact_app/domain/repositories/auth_repository.dart';
 
 class DoLogin {

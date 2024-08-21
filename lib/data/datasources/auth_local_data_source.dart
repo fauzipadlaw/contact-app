@@ -1,4 +1,3 @@
-import 'package:contact_app/domain/entities/contact.dart';
 import 'package:hive/hive.dart';
 
 class AuthLocalDataSource {

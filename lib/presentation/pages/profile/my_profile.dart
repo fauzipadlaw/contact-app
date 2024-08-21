@@ -1,14 +1,20 @@
 import 'package:contact_app/core/theme/colors.dart';
+import 'package:contact_app/core/utils/helpers.dart';
+import 'package:contact_app/presentation/providers/auth_provider.dart';
+import 'package:contact_app/presentation/providers/profile_provider.dart';
 import 'package:contact_app/presentation/widgets/custom_button.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../contacts/contact_detail.dart';
+import '../login.dart';
 
-class MyProfile extends StatelessWidget {
+class MyProfile extends ConsumerWidget {
   const MyProfile({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final profile = ref.watch(contactNotifierProvider);
     return Scaffold(
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(70.0),
@@ -27,7 +33,11 @@ class MyProfile extends StatelessWidget {
           centerTitle: false,
           actions: [
             TextButton(
-              onPressed: () => (),
+              onPressed: () {
+                ref.read(loggedIdNotifier.notifier).logout();
+                Navigator.of(context).pushReplacement(
+                    MaterialPageRoute(builder: (context) => const Login()));
+              },
               style: const ButtonStyle(
                   textStyle: WidgetStatePropertyAll(
                 TextStyle(
@@ -58,9 +68,9 @@ class MyProfile extends StatelessWidget {
                   color: blue,
                   borderRadius: BorderRadius.circular(100),
                 ),
-                child: const Text(
-                  'SS',
-                  style: TextStyle(
+                child: Text(
+                  profile != null ? getInitial(profile) : '',
+                  style: const TextStyle(
                     fontSize: 40,
                     fontWeight: FontWeight.w200,
                     color: white,
@@ -68,25 +78,25 @@ class MyProfile extends StatelessWidget {
                 ),
               ),
             ),
-            const Padding(
-              padding: EdgeInsets.only(bottom: 12),
+            Padding(
+              padding: const EdgeInsets.only(bottom: 12),
               child: Text(
-                'Muhammad Fauzi',
-                style: TextStyle(fontSize: 15),
+                '${profile?.firstName} ${profile?.lastName}',
+                style: const TextStyle(fontSize: 15),
               ),
             ),
-            const Padding(
-              padding: EdgeInsets.only(bottom: 12),
+            Padding(
+              padding: const EdgeInsets.only(bottom: 12),
               child: Text(
-                'email@email.com',
-                style: TextStyle(fontSize: 15),
+                '${profile?.email}',
+                style: const TextStyle(fontSize: 15),
               ),
             ),
-            const Padding(
-              padding: EdgeInsets.only(bottom: 30),
+            Padding(
+              padding: const EdgeInsets.only(bottom: 30),
               child: Text(
-                '11/11/1999',
-                style: TextStyle(fontSize: 15),
+                '${profile?.dob}',
+                style: const TextStyle(fontSize: 15),
               ),
             ),
             CustomButton(
