@@ -1,4 +1,4 @@
-# contact_app
+# contact app
 
 A new Flutter project.
 
