@@ -13,8 +13,6 @@ abstract interface class ContactRepository {
 
   Future<void> deleteContact(String id);
 
-  Future<List<Contact>> searchContacts(String query);
-
   Future<void> updateContact({
     required String id,
     required String firstName,
@@ -22,4 +20,6 @@ abstract interface class ContactRepository {
     String? email,
     String? dob,
   });
+
+  Future<Map<String, List<Contact>>> getGrouppedContacts();
 }

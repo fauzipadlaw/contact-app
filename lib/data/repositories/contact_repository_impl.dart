@@ -28,7 +28,9 @@ class ContactRepositoryImpl implements ContactRepository {
   Future<List<Contact>> getAllContacts(String query) async {
     final blogs = await contactLocalDataSource.loadContacts(query);
     List<Contact> res = blogs.map((model) => model.toEntity()).toList();
+    res.sort((a, b) => a.firstName.compareTo(b.firstName));
     return res;
+    ;
   }
 
   @override
@@ -43,8 +45,16 @@ class ContactRepositoryImpl implements ContactRepository {
   }
 
   @override
-  Future<List<Contact>> searchContacts(String query) {
-    // TODO: implement searchContacts
-    throw UnimplementedError();
+  Future<Map<String, List<Contact>>> getGrouppedContacts() async {
+    List<Contact> list = await getAllContacts('');
+    final Map<String, List<Contact>> groupedLists = {};
+    for (var contact in list) {
+      if (groupedLists[contact.firstName[0]] == null) {
+        groupedLists[contact.firstName[0]] = <Contact>[];
+      }
+
+      groupedLists[contact.firstName[0]]!.add(contact);
+    }
+    return groupedLists;
   }
 }

@@ -7,6 +7,8 @@ import 'package:contact_app/domain/usecases/get_all_contacts.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hive/hive.dart';
 
+import '../../domain/usecases/get_groupped_contacts.dart';
+
 final contactLocalDataSourcePrvider = Provider<ContactLocalDataSource>((ref) {
   final Box<ContactModel> contactBox = Hive.box('contacts');
   return ContactLocalDataSource(contactBox);
@@ -49,4 +51,30 @@ final querySearchProvider =
 class QuerySearchNotifier extends StateNotifier<String> {
   QuerySearchNotifier() : super('');
   void onChanged(String query) => state = query;
+}
+
+// Groupped Contacts
+final grouppedContactsNotifierProvider = StateNotifierProvider<
+    GrouppedContactListNotifier, Map<String, List<Contact>>>((ref) {
+  final getGrouppedContacts = ref.read(fetchGrouppedContactsProvider);
+
+  return GrouppedContactListNotifier(getGrouppedContacts);
+});
+
+final fetchGrouppedContactsProvider = Provider<GetGrouppedContacts>((ref) {
+  final repository = ref.read(contactRepositoryProvider);
+  return GetGrouppedContacts(repository);
+});
+
+class GrouppedContactListNotifier
+    extends StateNotifier<Map<String, List<Contact>>> {
+  final GetGrouppedContacts _getGrouppedContacts;
+
+  GrouppedContactListNotifier(
+    this._getGrouppedContacts,
+  ) : super({});
+
+  Future<void> loadContacts() async {
+    state = await _getGrouppedContacts();
+  }
 }

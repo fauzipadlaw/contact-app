@@ -1,4 +1,5 @@
 import 'package:contact_app/core/theme/colors.dart';
+import 'package:contact_app/domain/entities/contact.dart';
 import 'package:contact_app/presentation/providers/my_contacts_provider.dart';
 import 'package:contact_app/presentation/widgets/groupped_list.dart';
 import 'package:flutter/material.dart';
@@ -13,7 +14,10 @@ class MyContacts extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     String query = ref.watch(querySearchProvider);
     ref.watch(contactListNotifierProvider.notifier).loadContacts(query);
+    ref.watch(grouppedContactsNotifierProvider.notifier).loadContacts();
     var list = ref.watch(contactListNotifierProvider);
+    Map<String, List<Contact>> groupped =
+        ref.watch(grouppedContactsNotifierProvider);
     return Scaffold(
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(70.0),
@@ -68,7 +72,7 @@ class MyContacts extends ConsumerWidget {
                         ),
                       )
                     : GrouppedList(
-                        contacts: list,
+                        contacts: groupped,
                       ),
               ),
             )
