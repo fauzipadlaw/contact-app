@@ -1,4 +1,5 @@
 import 'package:contact_app/domain/entities/contact.dart';
+import 'package:contact_app/presentation/widgets/custom_button.dart';
 import 'package:contact_app/presentation/widgets/custom_text_field.dart';
 import 'package:contact_app/presentation/widgets/section_title.dart';
 import 'package:flutter/material.dart';
@@ -67,7 +68,7 @@ class ContactDetail extends StatelessWidget {
                       : Text(
                           getInitial(contact!),
                           style: const TextStyle(
-                            fontSize: 80,
+                            fontSize: 40,
                             fontWeight: FontWeight.w200,
                             color: white,
                           ),
@@ -110,6 +111,21 @@ class ContactDetail extends StatelessWidget {
                   isMandatory: false,
                   controller: dobConstroller,
                 ),
+              ),
+              const SizedBox(
+                height: 80,
+              ),
+              const CustomButton(label: 'Update'),
+              if (contact != null)
+                const Padding(
+                  padding: EdgeInsets.only(top: 27.0),
+                  child: CustomButton(
+                    label: 'Remove',
+                    isDanger: true,
+                  ),
+                ),
+              const SizedBox(
+                height: 80,
               ),
             ],
           ),
