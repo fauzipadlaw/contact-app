@@ -1,16 +1,19 @@
 import 'package:contact_app/core/theme/colors.dart';
 import 'package:contact_app/core/utils/helpers.dart';
 import 'package:contact_app/presentation/pages/contacts/contact_detail.dart';
+import 'package:contact_app/presentation/providers/profile_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../domain/entities/contact.dart';
 
-class ContactRow extends StatelessWidget {
+class ContactRow extends ConsumerWidget {
   final Contact contact;
   const ContactRow({super.key, required this.contact});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final mine = ref.watch(contactNotifierProvider);
     return InkWell(
       onTap: () {
         Navigator.of(context).push(MaterialPageRoute(
@@ -49,10 +52,11 @@ class ContactRow extends StatelessWidget {
                 style: const TextStyle(fontSize: 15),
               ),
             ),
-            const Text(
-              '(you)',
-              style: TextStyle(color: gray, fontStyle: FontStyle.italic),
-            )
+            if (mine?.id == contact.id)
+              const Text(
+                '(you)',
+                style: TextStyle(color: gray, fontStyle: FontStyle.italic),
+              )
           ],
         ),
       ),

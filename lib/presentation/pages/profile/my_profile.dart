@@ -12,6 +12,8 @@ import '../login.dart';
 class MyProfile extends ConsumerWidget {
   const MyProfile({super.key});
 
+  _directToLogin() {}
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final profile = ref.watch(contactNotifierProvider);
@@ -34,9 +36,10 @@ class MyProfile extends ConsumerWidget {
           actions: [
             TextButton(
               onPressed: () {
-                ref.read(loggedIdNotifier.notifier).logout();
-                Navigator.of(context).pushReplacement(
-                    MaterialPageRoute(builder: (context) => const Login()));
+                ref.read(loggedIdNotifier.notifier).logout().then((_) {
+                  Navigator.of(context).pushReplacement(
+                      MaterialPageRoute(builder: (context) => const Login()));
+                });
               },
               style: const ButtonStyle(
                   textStyle: WidgetStatePropertyAll(
