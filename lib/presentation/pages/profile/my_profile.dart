@@ -1,3 +1,5 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:contact_app/core/theme/colors.dart';
 import 'package:contact_app/core/utils/helpers.dart';
 import 'package:contact_app/presentation/providers/auth_provider.dart';
@@ -11,8 +13,6 @@ import '../login.dart';
 
 class MyProfile extends ConsumerWidget {
   const MyProfile({super.key});
-
-  _directToLogin() {}
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

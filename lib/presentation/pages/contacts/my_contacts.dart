@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../widgets/contact_row.dart';
+import 'contact_detail.dart';
 
 class MyContacts extends ConsumerWidget {
   const MyContacts({super.key});
@@ -35,6 +36,14 @@ class MyContacts extends ConsumerWidget {
           ),
           centerTitle: false,
         ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: blue,
+        onPressed: () {
+          Navigator.of(context)
+              .push(MaterialPageRoute(builder: (context) => ContactDetail()));
+        },
+        child: const Icon(Icons.add, color: Colors.white, size: 28),
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20),
