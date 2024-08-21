@@ -1,4 +1,4 @@
-import 'package:contact_app/utils/colors.dart';
+import 'package:contact_app/core/theme/colors.dart';
 import 'package:flutter/material.dart';
 
 class CustomTextField extends StatelessWidget {

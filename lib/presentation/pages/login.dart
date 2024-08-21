@@ -1,6 +1,6 @@
-import 'package:contact_app/utils/colors.dart';
-import 'package:contact_app/views/components/custom_button.dart';
-import 'package:contact_app/views/components/custom_text_field.dart';
+import 'package:contact_app/core/theme/colors.dart';
+import 'package:contact_app/presentation/widgets/custom_button.dart';
+import 'package:contact_app/presentation/widgets/custom_text_field.dart';
 import 'package:flutter/material.dart';
 
 class Login extends StatelessWidget {

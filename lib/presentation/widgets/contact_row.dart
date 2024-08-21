@@ -1,7 +1,8 @@
-import 'package:contact_app/data/models/contact.dart';
-import 'package:contact_app/utils/colors.dart';
-import 'package:contact_app/utils/helpers.dart';
+import 'package:contact_app/core/theme/colors.dart';
+import 'package:contact_app/core/utils/helpers.dart';
 import 'package:flutter/material.dart';
+
+import '../../domain/entities/contact.dart';
 
 class ContactRow extends StatelessWidget {
   final Contact contact;
@@ -9,7 +10,8 @@ class ContactRow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
+    return Container(
+      margin: const EdgeInsets.only(top: 8),
       height: 47,
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
