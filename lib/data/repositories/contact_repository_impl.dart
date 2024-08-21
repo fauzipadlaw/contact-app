@@ -30,7 +30,6 @@ class ContactRepositoryImpl implements ContactRepository {
     List<Contact> res = blogs.map((model) => model.toEntity()).toList();
     res.sort((a, b) => a.firstName.compareTo(b.firstName));
     return res;
-    ;
   }
 
   @override

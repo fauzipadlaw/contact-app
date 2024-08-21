@@ -11,7 +11,7 @@ class ContactRow extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.only(top: 8),
+      margin: const EdgeInsets.only(top: 8, bottom: 16),
       height: 47,
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,

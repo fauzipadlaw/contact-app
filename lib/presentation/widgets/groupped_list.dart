@@ -22,6 +22,7 @@ class GrouppedList extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: List.generate(keys.length, (index) {
               return Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
                     keys[index].toUpperCase(),
@@ -32,7 +33,7 @@ class GrouppedList extends StatelessWidget {
                     color: darkGray,
                     thickness: 0.5,
                   ),
-                  ...List.generate(contacts.length,
+                  ...List.generate(contacts[keys[index]]!.length,
                       (i) => ContactRow(contact: contacts[keys[index]]![i])),
                 ],
               );
