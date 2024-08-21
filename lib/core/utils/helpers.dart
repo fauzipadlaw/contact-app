@@ -19,3 +19,10 @@ void showSnackBar(BuildContext context, String content) {
       ),
     );
 }
+
+String? mandatoryValidator(String? text) {
+  if (text == null || text.isEmpty) {
+    return 'This field is mandatory';
+  }
+  return null;
+}

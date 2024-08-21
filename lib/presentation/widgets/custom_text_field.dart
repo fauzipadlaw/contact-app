@@ -1,15 +1,18 @@
 import 'package:contact_app/core/theme/colors.dart';
+import 'package:contact_app/core/utils/helpers.dart';
 import 'package:flutter/material.dart';
 
 class CustomTextField extends StatelessWidget {
   final String label;
   final bool isMandatory;
   final TextEditingController controller;
+  final String? Function(String?)? validator;
   const CustomTextField({
     super.key,
     required this.label,
     required this.isMandatory,
     required this.controller,
+    this.validator,
   });
 
   @override
@@ -32,13 +35,19 @@ class CustomTextField extends StatelessWidget {
               ))
           ])),
         ),
-        TextField(
+        TextFormField(
           controller: controller,
+          autovalidateMode: AutovalidateMode.onUserInteraction,
           style: const TextStyle(
             color: black,
             fontWeight: FontWeight.w300,
             fontSize: 14,
           ),
+          validator: (text) {
+            if (isMandatory) return mandatoryValidator(text);
+            if (validator != null) return validator!(text);
+            return null;
+          },
           decoration: const InputDecoration(
             prefixIcon: Icon(
               Icons.person_outlined,
