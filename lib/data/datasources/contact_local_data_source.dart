@@ -9,6 +9,15 @@ class ContactLocalDataSource {
 
   ContactLocalDataSource(this.contactBox);
 
+  Future<ContactModel?> getContact(String id) async {
+    List<ContactModel> list = await loadContacts('');
+    try {
+      return list.firstWhere((contact) => contact.id == id);
+    } catch (_) {
+      return null;
+    }
+  }
+
   Future<List<ContactModel>> loadContacts(String query) async {
     List<ContactModel> list = contactBox.values.toList();
     if (list.isEmpty) {

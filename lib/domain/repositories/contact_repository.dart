@@ -22,4 +22,5 @@ abstract interface class ContactRepository {
   });
 
   Future<Map<String, List<Contact>>> getGrouppedContacts();
+  Future<Contact?> getSingleContact(String id);
 }

@@ -1,6 +1,7 @@
 import 'package:contact_app/core/theme/colors.dart';
 import 'package:contact_app/data/models/contact_model.dart';
-import 'package:contact_app/presentation/widgets/navbar.dart';
+import 'package:contact_app/presentation/pages/home.dart';
+import 'package:contact_app/presentation/pages/login.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -21,6 +22,7 @@ Future<void> main() async {
     ..registerAdapter(ContactModelAdapter());
 
   await Hive.openBox<ContactModel>('contacts');
+  await Hive.openBox<String>('auth');
   runApp(const ProviderScope(child: MyApp()));
 }
 
@@ -36,7 +38,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ThemeData().colorScheme.copyWith(primary: blue),
         useMaterial3: true,
       ),
-      home: const Navbar(),
+      home: const Home(),
     );
   }
 }

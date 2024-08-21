@@ -56,4 +56,11 @@ class ContactRepositoryImpl implements ContactRepository {
     }
     return groupedLists;
   }
+
+  @override
+  Future<Contact?> getSingleContact(String id) async {
+    var res = await contactLocalDataSource.getContact(id);
+    if (res != null) return res.toEntity();
+    return null;
+  }
 }
