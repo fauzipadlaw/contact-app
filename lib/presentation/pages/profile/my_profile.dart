@@ -105,8 +105,10 @@ class MyProfile extends ConsumerWidget {
             CustomButton(
               label: 'Update My Detail',
               onPressed: () {
-                Navigator.of(context).push(
-                    MaterialPageRoute(builder: (context) => ContactDetail()));
+                Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) => ContactDetail(
+                          contact: profile,
+                        )));
               },
             )
           ],

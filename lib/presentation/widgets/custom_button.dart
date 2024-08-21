@@ -18,7 +18,7 @@ class CustomButton extends StatelessWidget {
       height: 53,
       width: double.infinity,
       child: TextButton(
-        onPressed: onPressed,
+        onPressed: onPressed ?? () => (),
         style: ButtonStyle(
             backgroundColor: WidgetStatePropertyAll(
               isDanger ? white : lightBlue.withOpacity(0.2),
