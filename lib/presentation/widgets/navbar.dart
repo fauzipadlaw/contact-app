@@ -1,5 +1,5 @@
 import 'package:contact_app/core/theme/colors.dart';
-import 'package:contact_app/presentation/pages/my_contacts.dart';
+import 'package:contact_app/presentation/pages/contacts/my_contacts.dart';
 import 'package:contact_app/presentation/pages/my_profile.dart';
 import 'package:flutter/material.dart';
 

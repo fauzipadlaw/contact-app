@@ -5,7 +5,7 @@ import 'package:contact_app/presentation/widgets/groupped_list.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../widgets/contact_row.dart';
+import '../../widgets/contact_row.dart';
 
 class MyContacts extends ConsumerWidget {
   const MyContacts({super.key});
